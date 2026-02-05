@@ -1,0 +1,12 @@
+platform :ios, '18.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'Spotify' do 
+  pod 'LookinServer', :configurations => ['Debug']
+  pod 'AFNetworking'
+  pod 'YYModel'
+  pod 'Masonry'
+  pod 'SDWebImage'
+  pod 'WCDB.objc'
+end
