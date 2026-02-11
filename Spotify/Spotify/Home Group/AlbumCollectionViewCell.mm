@@ -27,7 +27,7 @@
       make.height.equalTo(self.coverImageView.mas_width);
   }];
   _titleLabel = [[UILabel alloc] init];
-  _titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightMedium];
+  _titleLabel.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:12];
   _titleLabel.textColor = [UIColor whiteColor];
   _titleLabel.numberOfLines = 1;
   _titleLabel.textAlignment = NSTextAlignmentCenter;

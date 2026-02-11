@@ -7,6 +7,7 @@
 
 #import "VCMusicPlayer.h"
 #import "MusicPlayerManager.h"
+#import "MusicDBModel.h"
 @interface VCMusicPlayer ()
 
 @end
@@ -30,12 +31,16 @@
   [self.mainView updatePlayState:manager.isPlaying];
   if (manager.currentModel) {
     [self.mainView updateWithModel:manager.currentModel];
+    BOOL isLiked = [[MusicDBModel shared] isSongLiked:manager.currentModel.songID];
+    [self.mainView updatelikeState:isLiked];
   }
 }
 - (void)addNotifications {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSongChange) name:@"MusicPlayerDidChangeSongNotification" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePlayStateChange) name:@"MusicPlayerStateDidChangeNotification" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleProgressUpdate) name:@"MusicPlayerProgressDidUpdateNotification" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLikedSongsStatus) name:@"MusicLikeStatusDidChangeNitification"
+      object:nil];
 }
 - (void) handleSongChange {
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -49,6 +54,11 @@
   MusicPlayerManager *manager = [MusicPlayerManager shared];
   [self.mainView updateProgress:manager.currentTime total:manager.totalDuration];
 }
+- (void) handleLikedSongsStatus {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self updateData];
+  });
+}
 - (void)playerViewDidTapPlayPause {
     [[MusicPlayerManager shared] togglePlayPause];
 }
@@ -60,5 +70,8 @@
 }
 - (void)playerViewDidSeekToTime:(NSTimeInterval)time {
   [[MusicPlayerManager shared] seekToTime:time];
+}
+- (void)playerViewDidTapLikeButton {
+  [[MusicPlayerManager shared] TapLikedButton];
 }
 @end

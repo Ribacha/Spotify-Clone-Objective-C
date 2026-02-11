@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) playerViewDidTapNext;
 - (void) playerViewDidTapPreivous;
 - (void) playerViewDidSeekToTime: (NSTimeInterval) time;
+- (void) playerViewDidTapLikeButton;
 @end
 
 
@@ -23,10 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *artistLabel;
 @property (nonatomic, strong) UISlider *progressSlider;
 @property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, assign) BOOL isFlag;
 - (void)updatePlayState:(BOOL)isPlaying;
 - (void) updateWithModel: (SpotifySongsModels *) models;
 - (void) updateProgress: (NSTimeInterval) current total:(NSTimeInterval) total;
+- (void) updatelikeState: (BOOL) isLiked;
 @end
 
 NS_ASSUME_NONNULL_END

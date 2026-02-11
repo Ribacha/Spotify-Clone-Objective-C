@@ -45,6 +45,14 @@
 		4BCE5FF22F2B5B570098BE3F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCE5FF12F2B5B570098BE3F /* AVFoundation.framework */; };
 		4BCE5FF42F2B5B660098BE3F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCE5FF32F2B5B660098BE3F /* CoreMedia.framework */; };
 		4BCE5FF72F2C3DF80098BE3F /* SearchResultCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE5FF62F2C3DF80098BE3F /* SearchResultCell.mm */; };
+		4BCE63512F39FE160098BE3F /* LibraryHeaderView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63502F39FE160098BE3F /* LibraryHeaderView.mm */; };
+		4BCE63542F3A115C0098BE3F /* LibraryMenuCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63532F3A115C0098BE3F /* LibraryMenuCell.mm */; };
+		4BCE63572F3A15630098BE3F /* LibraryRootView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63562F3A15630098BE3F /* LibraryRootView.mm */; };
+		4BCE63592F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BCE63582F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf */; platformFilter = ios; };
+		4BCE635B2F3B24BD0098BE3F /* NotoSerifTC-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BCE635A2F3B24BC0098BE3F /* NotoSerifTC-Light.ttf */; };
+		4BCE635E2F3B3D1B0098BE3F /* SongModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE635D2F3B3D1B0098BE3F /* SongModel.mm */; };
+		4BCE63612F3B4A500098BE3F /* MusicDBModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */; };
+		4BCE63642F3C59850098BE3F /* VCLikeSongsLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63632F3C59850098BE3F /* VCLikeSongsLib.mm */; };
 		64D567B7521AA1779E2C2807 /* libPods-Spotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE7F0276DDDC18AC20A4DBB /* libPods-Spotify.a */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +130,20 @@
 		4BCE5FF32F2B5B660098BE3F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4BCE5FF52F2C3DF80098BE3F /* SearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
 		4BCE5FF62F2C3DF80098BE3F /* SearchResultCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SearchResultCell.mm; sourceTree = "<group>"; };
+		4BCE634F2F39FE160098BE3F /* LibraryHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryHeaderView.h; sourceTree = "<group>"; };
+		4BCE63502F39FE160098BE3F /* LibraryHeaderView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LibraryHeaderView.mm; sourceTree = "<group>"; };
+		4BCE63522F3A115C0098BE3F /* LibraryMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryMenuCell.h; sourceTree = "<group>"; };
+		4BCE63532F3A115C0098BE3F /* LibraryMenuCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LibraryMenuCell.mm; sourceTree = "<group>"; };
+		4BCE63552F3A15630098BE3F /* LibraryRootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryRootView.h; sourceTree = "<group>"; };
+		4BCE63562F3A15630098BE3F /* LibraryRootView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LibraryRootView.mm; sourceTree = "<group>"; };
+		4BCE63582F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifTC-ExtraBold.ttf"; sourceTree = "<group>"; };
+		4BCE635A2F3B24BC0098BE3F /* NotoSerifTC-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifTC-Light.ttf"; sourceTree = "<group>"; };
+		4BCE635C2F3B3D1B0098BE3F /* SongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongModel.h; sourceTree = "<group>"; };
+		4BCE635D2F3B3D1B0098BE3F /* SongModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SongModel.mm; sourceTree = "<group>"; };
+		4BCE635F2F3B4A500098BE3F /* MusicDBModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicDBModel.h; sourceTree = "<group>"; };
+		4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MusicDBModel.mm; sourceTree = "<group>"; };
+		4BCE63622F3C59850098BE3F /* VCLikeSongsLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCLikeSongsLib.h; sourceTree = "<group>"; };
+		4BCE63632F3C59850098BE3F /* VCLikeSongsLib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VCLikeSongsLib.mm; sourceTree = "<group>"; };
 		633CF3CF95762EBC6463859A /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
 		BBE7F0276DDDC18AC20A4DBB /* libPods-Spotify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Spotify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,6 +187,8 @@
 				4B59C87A2ECB471F00F95301 /* SceneDelegate.mm */,
 				4B59C8872ECB471F00F95301 /* ViewController.h */,
 				4B59C8882ECB471F00F95301 /* ViewController.mm */,
+				4BCE63582F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf */,
+				4BCE635A2F3B24BC0098BE3F /* NotoSerifTC-Light.ttf */,
 			);
 			path = Spotify;
 			sourceTree = "<group>";
@@ -221,8 +245,16 @@
 				4B59C8B32ECB477800F95301 /* MusicLibraryModel.mm */,
 				4B59C8B42ECB477800F95301 /* MusicLibraryView.h */,
 				4B59C8B52ECB477800F95301 /* MusicLibraryView.mm */,
+				4BCE634F2F39FE160098BE3F /* LibraryHeaderView.h */,
+				4BCE63502F39FE160098BE3F /* LibraryHeaderView.mm */,
+				4BCE63522F3A115C0098BE3F /* LibraryMenuCell.h */,
+				4BCE63532F3A115C0098BE3F /* LibraryMenuCell.mm */,
+				4BCE63552F3A15630098BE3F /* LibraryRootView.h */,
+				4BCE63562F3A15630098BE3F /* LibraryRootView.mm */,
 				4B59C8B62ECB477800F95301 /* VCMusicLibrary.h */,
 				4B59C8B72ECB477800F95301 /* VCMusicLibrary.mm */,
+				4BCE63622F3C59850098BE3F /* VCLikeSongsLib.h */,
+				4BCE63632F3C59850098BE3F /* VCLikeSongsLib.mm */,
 			);
 			path = "MusicLIb Group";
 			sourceTree = "<group>";
@@ -265,6 +297,10 @@
 				4BCE5FDF2EE6F1EE0098BE3F /* VCMusicPlayer.mm */,
 				4BCE5FE22EE82C060098BE3F /* MusicPlayerManager.h */,
 				4BCE5FE32EE82C060098BE3F /* MusicPlayerManager.mm */,
+				4BCE635C2F3B3D1B0098BE3F /* SongModel.h */,
+				4BCE635D2F3B3D1B0098BE3F /* SongModel.mm */,
+				4BCE635F2F3B4A500098BE3F /* MusicDBModel.h */,
+				4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */,
 			);
 			path = MusicPlayer;
 			sourceTree = "<group>";
@@ -364,6 +400,8 @@
 				4B59C89A2ECB471F00F95301 /* Assets.xcassets in Resources */,
 				4B59C89C2ECB471F00F95301 /* LaunchScreen.storyboard in Resources */,
 				4B59C89D2ECB471F00F95301 /* Main.storyboard in Resources */,
+				4BCE63592F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf in Resources */,
+				4BCE635B2F3B24BD0098BE3F /* NotoSerifTC-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,15 +459,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B59C8DA2ECC9AF100F95301 /* SpotifyModels.mm in Sources */,
+				4BCE63512F39FE160098BE3F /* LibraryHeaderView.mm in Sources */,
+				4BCE635E2F3B3D1B0098BE3F /* SongModel.mm in Sources */,
 				4B59C88A2ECB471F00F95301 /* AppDelegate.mm in Sources */,
 				4BA01A9C2EDDC8250076DC9A /* SpotifyArtistAPIModel.mm in Sources */,
+				4BCE63642F3C59850098BE3F /* VCLikeSongsLib.mm in Sources */,
 				4B59C88D2ECB471F00F95301 /* LoginView.mm in Sources */,
 				4B59C8AF2ECB474F00F95301 /* VCSearchPage.mm in Sources */,
 				4B59C8B02ECB474F00F95301 /* SearchView.mm in Sources */,
+				4BCE63542F3A115C0098BE3F /* LibraryMenuCell.mm in Sources */,
 				4B59C8BF2ECB60BD00F95301 /* SpotifyAPIManager.mm in Sources */,
 				4B59C9CA2ED32F2900F95301 /* SpotifyRecommendAPIModel.mm in Sources */,
 				4B59C8B12ECB474F00F95301 /* SpotifySearchModel.mm in Sources */,
 				4BCE5FF72F2C3DF80098BE3F /* SearchResultCell.mm in Sources */,
+				4BCE63572F3A15630098BE3F /* LibraryRootView.mm in Sources */,
 				4BCE5FE72EE843AA0098BE3F /* MusicPlayerDetailView.mm in Sources */,
 				4B59C88E2ECB471F00F95301 /* main.m in Sources */,
 				4BCE5FED2F1342EE0098BE3F /* AlbumDetailView.mm in Sources */,
@@ -439,6 +482,7 @@
 				4B59C8A52ECB473400F95301 /* HomePageView.mm in Sources */,
 				4B59C8A62ECB473400F95301 /* HomePageModel.mm in Sources */,
 				4BCE5FDA2EE6D3430098BE3F /* MiniPlayerView.mm in Sources */,
+				4BCE63612F3B4A500098BE3F /* MusicDBModel.mm in Sources */,
 				4B59C8A72ECB473400F95301 /* VCHomePage.mm in Sources */,
 				4B59C8922ECB471F00F95301 /* SceneDelegate.mm in Sources */,
 				4BA01AA22EDF0DA70076DC9A /* VCAlbumDetail.mm in Sources */,

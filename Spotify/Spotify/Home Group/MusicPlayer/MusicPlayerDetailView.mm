@@ -35,8 +35,11 @@
   }];
   self.songLabel = [[UILabel alloc] init];
   self.songLabel.textColor = [UIColor whiteColor];
-  self.songLabel.font = [UIFont systemFontOfSize:24];
+  self.songLabel.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:24];
   self.songLabel.textAlignment = NSTextAlignmentCenter;
+  self.songLabel.adjustsFontSizeToFitWidth = YES;
+  self.songLabel.minimumScaleFactor = 0.5;
+  self.songLabel.numberOfLines = 1;
   [self addSubview:self.songLabel];
   [self.songLabel mas_makeConstraints:^(MASConstraintMaker *make) {
     make.top.equalTo(self.coverImage.mas_bottom).offset(30);
@@ -83,6 +86,19 @@
   tapGesture.cancelsTouchesInView = NO;
   [self.progressSlider addGestureRecognizer:tapGesture];
   [self.progressSlider addTarget:self action:@selector(sliderTouchDown) forControlEvents:UIControlEventTouchDown];
+
+  self.likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  UIImageSymbolConfiguration *conf = [UIImageSymbolConfiguration configurationWithPointSize:30 weight:UIImageSymbolWeightMedium];
+  [self.likeButton setImage:[UIImage systemImageNamed:@"heart" withConfiguration:conf] forState:UIControlStateNormal];
+  [self.likeButton setImage:[UIImage systemImageNamed:@"heart.fill" withConfiguration:conf] forState:UIControlStateSelected];
+  self.likeButton.tintColor = [UIColor whiteColor];
+  [self addSubview:self.likeButton];
+  [self.likeButton addTarget:self action:@selector(likeAction) forControlEvents:UIControlEventTouchUpInside];
+  [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.top.equalTo(self.songLabel.mas_bottom).offset(19);
+    make.left.equalTo(nextBtn.mas_left).offset(20);
+  }];
+
 }
 - (void) playAction {
   if ([self.delegate respondsToSelector:@selector(playerViewDidTapPlayPause)]) {
@@ -97,6 +113,11 @@
 - (void) nextAction {
   if ([self.delegate respondsToSelector:@selector(playerViewDidTapNext)]){
     [self.delegate playerViewDidTapNext];
+  }
+}
+- (void) likeAction {
+  if ([self.delegate respondsToSelector:@selector(playerViewDidTapLikeButton)]) {
+    [self.delegate playerViewDidTapLikeButton];
   }
 }
 - (UIButton *)createControlBtn:(NSString *)imgName action:(SEL)sel {
@@ -124,6 +145,14 @@
   if (!self.isFlag) {
     self.progressSlider.maximumValue = total;
     self.progressSlider.value = current;
+  }
+}
+- (void) updatelikeState: (BOOL) isLiked {
+  self.likeButton.selected = isLiked;
+  if (isLiked) {
+    self.likeButton.tintColor = [UIColor systemRedColor];
+  } else {
+    self.likeButton.tintColor = [UIColor whiteColor];
   }
 }
 - (void) sliderTouchDown {

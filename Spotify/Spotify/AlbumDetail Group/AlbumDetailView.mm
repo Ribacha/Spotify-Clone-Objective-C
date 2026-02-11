@@ -38,7 +38,7 @@
   }];
   self.RecommendLabel = [[UILabel alloc] init];
   self.RecommendLabel.textColor = [UIColor whiteColor];
-  self.RecommendLabel.font = [UIFont systemFontOfSize:35];
+  self.RecommendLabel.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:35];
   self.RecommendLabel.adjustsFontSizeToFitWidth = YES;
   [headerView addSubview:self.RecommendLabel];
   [self.RecommendLabel mas_makeConstraints:^(MASConstraintMaker *make) {

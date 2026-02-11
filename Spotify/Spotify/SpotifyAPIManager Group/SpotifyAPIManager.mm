@@ -30,9 +30,9 @@ static NSString *const kBaseURL = @"http://localhost:3000";
     self = [super init];
     if (self) {
       _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
-      // 网易云 API 返回的是 JSON
+      /// 网易云 API 返回的是 JSON
       _manager.responseSerializer = [AFJSONResponseSerializer serializer];
-      // 允许接收的类型
+      /// 允许接收的类型
       _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
       _manager.requestSerializer.timeoutInterval = 15.0;
     }

@@ -167,7 +167,7 @@
   UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 70)];
   header.backgroundColor = [UIColor clearColor];
   UILabel *label = [[UILabel alloc] init];
-  label.font = [UIFont systemFontOfSize:38 weight:UIFontWeightBold];
+  label.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:33];
   label.textColor = [UIColor whiteColor];
   label.text = @"你好啊!";
   [header addSubview:label];

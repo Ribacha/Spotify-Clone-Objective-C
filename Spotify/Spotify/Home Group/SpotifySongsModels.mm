@@ -7,8 +7,15 @@
 
 #import "SpotifySongsModels.h"
 #import "YYModel/YYModel.h"
-
+#import "WCDB/WCDBObjc.h"
 @implementation SpotifySongsModels
+WCDB_IMPLEMENTATION(SpotifySongsModels)
+WCDB_SYNTHESIZE(songID)
+WCDB_SYNTHESIZE(track)
+WCDB_SYNTHESIZE(artist)
+WCDB_SYNTHESIZE(picURl)
+WCDB_SYNTHESIZE(songUrl)
+WCDB_PRIMARY(songID)
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{

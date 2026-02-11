@@ -29,7 +29,7 @@
 
   self.titleLabel = [[UILabel alloc] init];
   self.titleLabel.textColor = [UIColor whiteColor];
-  self.titleLabel.font = [UIFont systemFontOfSize:13];
+  self.titleLabel.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:13];
   self.titleLabel.numberOfLines = 2;
   [self.contentView addSubview:self.titleLabel];
 

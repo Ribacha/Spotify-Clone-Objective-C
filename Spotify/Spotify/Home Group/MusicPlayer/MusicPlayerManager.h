@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) fentchID: (NSString *)String;
 - (void) fetchSongModels:  (NSArray<SpotifySongsModels *> *) playlist;
 - (void) seekToTime:(NSTimeInterval) time;
+- (void) TapLikedButton;
 @end
 
 NS_ASSUME_NONNULL_END

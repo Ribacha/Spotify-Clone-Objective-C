@@ -33,7 +33,7 @@
 - (void)setupUI {
     if (!self.headerLabel) {
         self.headerLabel = [[UILabel alloc] init];
-        self.headerLabel.font = [UIFont systemFontOfSize:33 weight:UIFontWeightBold];
+        self.headerLabel.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:30];
         self.headerLabel.textColor = [UIColor whiteColor];
         self.headerLabel.textAlignment = NSTextAlignmentLeft;
     }

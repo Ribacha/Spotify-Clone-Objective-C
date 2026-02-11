@@ -41,7 +41,7 @@
   }];
   self.songsLabel = [[UILabel alloc] init];
   self.songsLabel.textColor = [UIColor whiteColor];
-  self.songsLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
+  self.songsLabel.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:18];
   [self.contentView addSubview:self.songsLabel];
   [self.songsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
     make.left.equalTo(self.numberLabel.mas_right).offset(15);
@@ -50,7 +50,7 @@
   }];
   self.artistLabel = [[UILabel alloc] init];
   self.artistLabel.textColor = [UIColor grayColor];
-  self.artistLabel.font = [UIFont systemFontOfSize:13];
+  self.artistLabel.font = [UIFont fontWithName:@"NotoSerifTC-Light" size:12];
   [self.contentView addSubview:self.artistLabel];
   [self.artistLabel mas_makeConstraints:^(MASConstraintMaker *make) {
     make.left.equalTo(self.numberLabel.mas_right).offset(15);
