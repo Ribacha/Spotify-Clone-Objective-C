@@ -13,11 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MusicDBModel : NSObject
 @property (nonatomic, strong) WCTDatabase *dataBase;
 @property (nonatomic, strong) NSString *tableName;
+@property (nonatomic, strong) NSString *downLoadSongTableName;
 + (instancetype) shared;
 - (BOOL) likeSong: (SpotifySongsModels *) song;
 - (BOOL) unLikeSong: (SpotifySongsModels *) song;
 - (BOOL) isSongLiked: (NSString *) songId;
 - (NSArray<SpotifySongsModels *> *) getAllLikeSong;
+- (BOOL) saveDownLoadSongs: (SpotifySongsModels *) songs;
+- (BOOL) isDownLoadSongs: (NSString *) songId;
+- (NSArray<SpotifySongsModels *> *) getAllDownLoadSongs;
 @end
 
 NS_ASSUME_NONNULL_END

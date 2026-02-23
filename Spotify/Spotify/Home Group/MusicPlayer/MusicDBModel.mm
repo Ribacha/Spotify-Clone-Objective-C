@@ -22,12 +22,14 @@
   self = [super init];
   if (self) {
     self.tableName = @"favouriteSongsTable";
+    self.downLoadSongTableName = @"downLoadSongsTable";
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *dbPath = [docPath stringByAppendingPathComponent:@"SpotifyData.db"];
     self.dataBase = [[WCTDatabase alloc] initWithPath:dbPath];
     if ([self.dataBase canOpen]) {
       BOOL result = [self.dataBase createTable:self.tableName withClass:SpotifySongsModels.class];
-      if(result) {
+      BOOL result2 = [self.dataBase createTable:self.downLoadSongTableName withClass:SpotifySongsModels.class];
+      if(result && result2) {
         NSLog(@"数据库打开成功，建表成功");
         NSLog(@"数据库路径: %@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
       } else {
@@ -39,7 +41,7 @@
   return self;
 }
 
-#pragma - mark - 增，删，查， 判断逻辑
+#pragma - mark - 点赞歌曲的增，删，查， 判断逻辑
 - (BOOL) likeSong: (SpotifySongsModels *) song {
   if (!song) {
     return NO;
@@ -56,5 +58,19 @@
 - (NSArray<SpotifySongsModels *> *) getAllLikeSong {
   return [self.dataBase getObjectsOfClass:SpotifySongsModels.class fromTable:self.tableName];
 }
+#pragma - mark - 下载歌曲的增，查， 判断逻辑
+- (BOOL) saveDownLoadSongs: (SpotifySongsModels *) songs {
+  if (!songs) {
+    return NO;
+  }
+  return [self.dataBase insertOrReplaceObject:songs intoTable:self.downLoadSongTableName];
 
+}
+- (BOOL) isDownLoadSongs: (NSString *) songId {
+  SpotifySongsModels *obj = [self.dataBase getObjectOfClass:SpotifySongsModels.class fromTable:self.downLoadSongTableName where:SpotifySongsModels.songID == songId];
+  return (obj != nil);
+}
+- (NSArray<SpotifySongsModels *> *) getAllDownLoadSongs {
+  return [self.dataBase getObjectsOfClass:SpotifySongsModels.class fromTable:self.downLoadSongTableName];
+}
 @end

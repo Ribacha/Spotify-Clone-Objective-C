@@ -12,6 +12,7 @@
 #import "LibraryRootView.h"
 #import "LibraryHeaderView.h"
 #import "VCLikeSongsLib.h"
+#import "VCDownLoadSongsLib.h"
 @interface VCMusicLibrary ()
 
 @end
@@ -74,8 +75,12 @@
       NSLog(@"点击了收藏音乐");
     }
       break;
-    case LibraryActionTypeDownLoad:
+    case LibraryActionTypeDownLoad: {
+      VCDownLoadSongsLib *downLoadMusicVC = [[VCDownLoadSongsLib alloc] init];
+      downLoadMusicVC.hidesBottomBarWhenPushed = YES;
+      [self.navigationController pushViewController:downLoadMusicVC animated:YES];
       NSLog(@"点击了下载音乐");
+    }
       break;
     default:
       break;

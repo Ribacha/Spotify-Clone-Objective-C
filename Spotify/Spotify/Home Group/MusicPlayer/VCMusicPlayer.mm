@@ -33,6 +33,8 @@
     [self.mainView updateWithModel:manager.currentModel];
     BOOL isLiked = [[MusicDBModel shared] isSongLiked:manager.currentModel.songID];
     [self.mainView updatelikeState:isLiked];
+    BOOL isDownload = [[MusicPlayerManager shared] isSongDownLoad:manager.currentModel.songID];
+    [self.mainView updateDownLoadState:isDownload];
   }
 }
 - (void)addNotifications {
@@ -41,6 +43,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleProgressUpdate) name:@"MusicPlayerProgressDidUpdateNotification" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLikedSongsStatus) name:@"MusicLikeStatusDidChangeNitification"
       object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDownLoadSongsStatus) name:@"MusicDownLoadDidFinishedNotification" object:nil];
 }
 - (void) handleSongChange {
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -59,6 +62,11 @@
     [self updateData];
   });
 }
+- (void) handleDownLoadSongsStatus {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self updateData];
+  });
+}
 - (void)playerViewDidTapPlayPause {
     [[MusicPlayerManager shared] togglePlayPause];
 }
@@ -73,5 +81,8 @@
 }
 - (void)playerViewDidTapLikeButton {
   [[MusicPlayerManager shared] TapLikedButton];
+}
+- (void) playerViewDidTapDownLoadButton {
+  [[MusicPlayerManager shared] downLoadCurrentSongForUser];
 }
 @end

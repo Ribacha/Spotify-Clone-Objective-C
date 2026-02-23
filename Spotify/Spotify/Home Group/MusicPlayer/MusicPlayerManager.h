@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) fetchSongModels:  (NSArray<SpotifySongsModels *> *) playlist;
 - (void) seekToTime:(NSTimeInterval) time;
 - (void) TapLikedButton;
+- (void) downLoadCurrentSongForUser;
+- (BOOL) isSongDownLoad: (NSString *)songID;
 @end
 
 NS_ASSUME_NONNULL_END

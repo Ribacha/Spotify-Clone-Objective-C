@@ -45,11 +45,24 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
   }
   return musicCacheDir;
 }
-//获取绝对路径
-- (NSString *) getLocalPathForSongID: (NSString *)songID {
-  return [[self getCacheDictionary] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", songID]];
+//获取SandBox下载目录
+- (NSString *) getDownloadDictionary {
+  NSString *downLoadPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+  NSString *dir = [downLoadPath stringByAppendingString:@"downLoadSpace"];
+  NSFileManager *manager = [NSFileManager defaultManager];
+  if (![manager fileExistsAtPath:dir]) {
+    [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
+  }
+  return dir;
 }
-
+//获取缓存绝对路径
+- (NSString *)getLocalPathForSongID: (NSString *)songID {
+  return [[self getCacheDictionary] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", songID]];
+}
+//获取下载绝对路径
+- (NSString *) getLocalDownLoadPathForSongID: (NSString *)songID {
+  return [[self getDownloadDictionary] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", songID]];
+}
 
 - (void) pause {
   if (self.player) {
@@ -103,7 +116,7 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
 - (void) postStateNotification {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicPlayerStateDidChangeNotification" object:nil];
 }
-
+//播放音乐代码
 - (void) playMusic: (SpotifySongsModels *) models {
   self.currentModel = models;
   self.isPlaying = YES;
@@ -116,6 +129,7 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
   if ([[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
     NSLog(@"内存中含有,播放本地歌曲");
     [self playStreamWithURL:localPath];
+    [self touchFileToCheckIn:localPath];
     return;
   }
   NSLog(@"马上播放： %@，歌曲 id：%@ ",models.track, models.songID);
@@ -142,12 +156,57 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
   [[[NSURLSession sharedSession] downloadTaskWithRequest:req completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     if (!error && location) {
       NSString *destPath = [self getLocalPathForSongID:models.songID];
+
+      NSFileManager *fileManager = [NSFileManager defaultManager];
+      if ([fileManager fileExistsAtPath:destPath]) {
+        [fileManager removeItemAtPath:destPath error:nil];
+      }
       [[NSFileManager defaultManager] moveItemAtURL:location toURL:[NSURL fileURLWithPath:destPath] error:nil];
       NSLog(@"下载完成");
       NSLog(@"%@", [self getCacheDictionary]);
     }
   }] resume];
   [self checkAndPruneCache];
+}
+//下载音乐代码
+- (void) downLoadCurrentSongForUser {
+  if (!self.currentModel) {
+    return;
+  }
+  SpotifySongsModels *models = self.currentModel;
+  if ([self isSongDownLoad:models.songID]) {
+    NSLog(@"已经下载在音乐库中了");
+    NSLog(@"%@", [self getDownloadDictionary]);
+    return;
+  }
+  NSString *fileName = [NSString stringWithFormat:@"%@.mp3", models.songID];
+  NSLog(@"开始手动下载");
+  NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:models.songUrl]];
+  [[[NSURLSession sharedSession] downloadTaskWithRequest:req completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    if (!error && location) {
+      NSString *destPath = [self getLocalDownLoadPathForSongID:models.songID];
+
+      NSFileManager *fileManager = [NSFileManager defaultManager];
+      if ([fileManager fileExistsAtPath:destPath]) {
+        [fileManager removeItemAtPath:destPath error:nil];
+      }
+      [[NSFileManager defaultManager] moveItemAtURL:location toURL:[NSURL fileURLWithPath:destPath] error:nil];
+      [[NSFileManager defaultManager] moveItemAtURL:location toURL:[NSURL fileURLWithPath:destPath] error:nil];
+      [[MusicDBModel shared] saveDownLoadSongs:models];
+      NSLog(@"下载完成");
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicDownLoadDidFinishedNotification" object:nil];
+      });
+      NSLog(@"%@", [self getDownloadDictionary]);
+
+    }
+  }] resume];
+
+}
+- (BOOL) isSongDownLoad: (NSString *)songID {
+  NSString *fileName = [NSString stringWithFormat:@"%@.mp3", songID];
+  NSString *path = [[self getDownloadDictionary] stringByAppendingPathComponent:fileName];
+  return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
 //LRU 清除缓存代码
 - (void) checkAndPruneCache {
@@ -183,6 +242,7 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
     }
 }
 
+//播放方法
 - (void) playStreamWithURL: (NSString *)url {
   NSURL *songURL = nil;
   if ([url hasPrefix:@"http"] || [url hasPrefix:@"https"]) {
@@ -216,7 +276,7 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
   [self.player play];
   self.isPlaying = YES;
   [self postStateNotification];
-}//播放方法
+}
 
 - (void) seekToTime:(NSTimeInterval) time {
   [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
@@ -243,4 +303,12 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
   }
   [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicLikeStatusDidChangeNitification" object:nil];
 }
+
+- (void) touchFileToCheckIn:(NSString *)path {
+  //修改文件时间
+  NSDictionary *attrs = @{NSFileModificationDate : [NSDate date]};
+  //把修改后的时间还给文件
+  [[NSFileManager defaultManager] setAttributes:attrs ofItemAtPath:path error:nil];
+}
+
 @end

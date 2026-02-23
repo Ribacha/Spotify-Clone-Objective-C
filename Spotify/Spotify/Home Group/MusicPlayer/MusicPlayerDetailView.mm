@@ -99,6 +99,19 @@
     make.left.equalTo(nextBtn.mas_left).offset(20);
   }];
 
+  self.downLoadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  UIImageSymbolConfiguration *confd = [UIImageSymbolConfiguration configurationWithPointSize:30 weight:UIImageSymbolWeightMedium];
+  [self.downLoadButton setImage:[UIImage systemImageNamed:@"arrow.down" withConfiguration:confd] forState:UIControlStateNormal];
+  [self.downLoadButton setImage:[UIImage systemImageNamed:@"checkmark" withConfiguration:confd] forState:UIControlStateSelected];
+  self.downLoadButton.tintColor = [UIColor whiteColor];
+  [self addSubview:self.downLoadButton];
+  [self.downLoadButton addTarget:self action:@selector(downLoadAction) forControlEvents:UIControlEventTouchUpInside];
+  [self.downLoadButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.top.equalTo(self.songLabel.mas_bottom).offset(19);
+    make.left.equalTo(prevBtn.mas_left).offset(20);
+  }];
+
+
 }
 - (void) playAction {
   if ([self.delegate respondsToSelector:@selector(playerViewDidTapPlayPause)]) {
@@ -118,6 +131,11 @@
 - (void) likeAction {
   if ([self.delegate respondsToSelector:@selector(playerViewDidTapLikeButton)]) {
     [self.delegate playerViewDidTapLikeButton];
+  }
+}
+- (void) downLoadAction {
+  if ([self.delegate respondsToSelector:@selector(playerViewDidTapDownLoadButton)]) {
+    [self.delegate playerViewDidTapDownLoadButton];
   }
 }
 - (UIButton *)createControlBtn:(NSString *)imgName action:(SEL)sel {
@@ -153,6 +171,14 @@
     self.likeButton.tintColor = [UIColor systemRedColor];
   } else {
     self.likeButton.tintColor = [UIColor whiteColor];
+  }
+}
+- (void) updateDownLoadState: (BOOL) isDownLoad {
+  self.downLoadButton.selected = isDownLoad;
+  if (isDownLoad) {
+    self.downLoadButton.tintColor = [UIColor systemGreenColor];
+  } else {
+    self.downLoadButton.tintColor = [UIColor whiteColor];
   }
 }
 - (void) sliderTouchDown {
