@@ -33,6 +33,7 @@
     make.centerX.equalTo(self);
     make.width.height.mas_equalTo(300);
   }];
+
   self.songLabel = [[UILabel alloc] init];
   self.songLabel.textColor = [UIColor whiteColor];
   self.songLabel.font = [UIFont fontWithName:@"NotoSerifTC-ExtraBold" size:24];
@@ -44,6 +45,18 @@
   [self.songLabel mas_makeConstraints:^(MASConstraintMaker *make) {
     make.top.equalTo(self.coverImage.mas_bottom).offset(30);
     make.left.right.equalTo(self).inset(20);
+  }];
+  self.artistLabel = [[UILabel alloc] init];
+  self.artistLabel.textColor = [UIColor grayColor];
+  self.artistLabel.font = [UIFont fontWithName:@"NotoSerifTC-Light" size:18];
+  self.artistLabel.textAlignment = NSTextAlignmentCenter;
+  self.artistLabel.adjustsFontSizeToFitWidth = YES;
+  self.artistLabel.minimumScaleFactor = 0.5;
+  self.artistLabel.numberOfLines = 1;
+  [self addSubview:self.artistLabel];
+  [self.artistLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.top.equalTo(self.songLabel.mas_bottom).offset(15);
+    make.centerX.equalTo(self.songLabel.mas_centerX);
   }];
   self.progressSlider = [[UISlider alloc] init];
   self.progressSlider.minimumTrackTintColor = [UIColor whiteColor];
@@ -57,8 +70,8 @@
     make.top.equalTo(self.songLabel.mas_bottom).offset(70);
     make.left.right.equalTo(self).inset(20);
   }];
+
   self.playButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//  [self.playButton setImage:[UIImage systemImageNamed:@"pause.circle.fill"] forState:UIControlStateNormal];
   [self updatePlayState:NO];
   self.playButton.tintColor = [UIColor whiteColor];
   [self.playButton addTarget:self action:@selector(playAction) forControlEvents:UIControlEventTouchUpInside];
@@ -101,7 +114,7 @@
 
   self.downLoadButton = [UIButton buttonWithType:UIButtonTypeCustom];
   UIImageSymbolConfiguration *confd = [UIImageSymbolConfiguration configurationWithPointSize:30 weight:UIImageSymbolWeightMedium];
-  [self.downLoadButton setImage:[UIImage systemImageNamed:@"arrow.down" withConfiguration:confd] forState:UIControlStateNormal];
+  [self.downLoadButton setImage:[UIImage systemImageNamed:@"arrow.down.to.line" withConfiguration:confd] forState:UIControlStateNormal];
   [self.downLoadButton setImage:[UIImage systemImageNamed:@"checkmark" withConfiguration:confd] forState:UIControlStateSelected];
   self.downLoadButton.tintColor = [UIColor whiteColor];
   [self addSubview:self.downLoadButton];
@@ -110,7 +123,16 @@
     make.top.equalTo(self.songLabel.mas_bottom).offset(19);
     make.left.equalTo(prevBtn.mas_left).offset(20);
   }];
-
+  self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  UIImageSymbolConfiguration *confing = [UIImageSymbolConfiguration configurationWithPointSize:22 weight:UIImageSymbolWeightBlack];
+  [self.commentButton setImage:[UIImage systemImageNamed:@"chevron.down" withConfiguration:confing] forState:UIControlStateNormal];
+  self.commentButton.tintColor = [UIColor whiteColor];
+  [self.commentButton addTarget:self action:@selector(newCommentPage) forControlEvents:UIControlEventTouchUpInside];
+  [self addSubview:self.commentButton];
+  [self.commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom).offset(-10);
+    make.centerX.equalTo(self);
+  }];
 
 }
 - (void) playAction {
@@ -138,6 +160,11 @@
     [self.delegate playerViewDidTapDownLoadButton];
   }
 }
+- (void) newCommentPage {
+  if ([self.delegate respondsToSelector:@selector(playerViewDidTapSlideDownButton)]) {
+    [self.delegate playerViewDidTapSlideDownButton];
+  }
+}
 - (UIButton *)createControlBtn:(NSString *)imgName action:(SEL)sel {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     UIImageSymbolConfiguration *config = [UIImageSymbolConfiguration configurationWithPointSize:30 weight:UIImageSymbolWeightRegular];
@@ -156,6 +183,7 @@
 }
 - (void) updateWithModel: (SpotifySongsModels *) models {
   self.songLabel.text = models.track;
+  self.artistLabel.text = models.artist;
   [self.coverImage sd_setImageWithURL:[NSURL URLWithString: models.picURl]];
   self.artistLabel.text = models.artist;
 }

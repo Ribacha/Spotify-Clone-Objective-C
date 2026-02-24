@@ -11,7 +11,6 @@
 #import "SpotifyArtistAPIModel.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MusicDBModel.h"
-#import "SongModel.h"
 @interface MusicPlayerManager ()
 
 @end
@@ -179,7 +178,6 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
     NSLog(@"%@", [self getDownloadDictionary]);
     return;
   }
-  NSString *fileName = [NSString stringWithFormat:@"%@.mp3", models.songID];
   NSLog(@"开始手动下载");
   NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:models.songUrl]];
   [[[NSURLSession sharedSession] downloadTaskWithRequest:req completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {

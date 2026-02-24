@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) playerViewDidSeekToTime: (NSTimeInterval) time;
 - (void) playerViewDidTapLikeButton;
 - (void) playerViewDidTapDownLoadButton;
+- (void) playerViewDidTapSlideDownButton;
 @end
 
 
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *downLoadButton;
+@property (nonatomic, strong) UIButton *commentButton;
 @property (nonatomic, assign) BOOL isFlag;
 - (void)updatePlayState:(BOOL)isPlaying;
 - (void) updateWithModel: (SpotifySongsModels *) models;

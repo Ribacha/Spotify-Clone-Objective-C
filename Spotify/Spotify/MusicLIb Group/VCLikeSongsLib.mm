@@ -29,6 +29,7 @@
   [self setupBackButton];
   self.mainView.tableView.dataSource = self;
   self.mainView.tableView.delegate = self;
+  self.mainView.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
   [self.mainView.tableView registerClass:[AlbumSongsTableViewCell class] forCellReuseIdentifier:@"AlbumSongsTableViewCell"];
   [self.mainView.tableView reloadData];
 }

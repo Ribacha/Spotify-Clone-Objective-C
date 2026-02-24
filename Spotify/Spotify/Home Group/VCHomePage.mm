@@ -44,15 +44,12 @@
 }
 - (void) fetchData {
     __weak typeof(self) weakSelf = self;
-
     // 调用我们刚才改好的 Netease 接口
     [SpotifyRecommendAPIModel fetchRecommedtions:^(NSArray<SpotifyModels *> * _Nonnull models, NSError * _Nonnull error) {
         if (error) {
             NSLog(@"数据获取失败: %@", error);
-            // 这里可以加一个提示框 HUD
             return;
         }
-
         // 确保有数据
         if (models.count > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -66,8 +63,6 @@
                 } else {
                     weakSelf.girdData = models; // 数据不够就全给
                 }
-
-                // 3. 刷新 UI
                 [weakSelf.tableView reloadData];
             });
         }
@@ -108,11 +103,9 @@
     if (!source || source.count == 0) {
         return cell;
     }
-
     // 2. 使用刚才写的安全切片方法来伪造由于“分类”的数据
     // 假设 Grid 用掉了前 6 个 (index 0-5)
     // 我们从 index 6 开始往后切分
-
     switch (indexPath.section) {
         case 1: {
             // 取 index 6 开始的 6 个

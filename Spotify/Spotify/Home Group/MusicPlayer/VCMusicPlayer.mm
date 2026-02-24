@@ -8,6 +8,8 @@
 #import "VCMusicPlayer.h"
 #import "MusicPlayerManager.h"
 #import "MusicDBModel.h"
+#import "VCCommentPage.h"
+#import "CommentPageModel.h"
 @interface VCMusicPlayer ()
 
 @end
@@ -84,5 +86,12 @@
 }
 - (void) playerViewDidTapDownLoadButton {
   [[MusicPlayerManager shared] downLoadCurrentSongForUser];
+}
+- (void) playerViewDidTapSlideDownButton {
+  
+  VCCommentPage *commentPage = [[VCCommentPage alloc] init];
+  commentPage.songID = [MusicPlayerManager shared].currentModel.songID;
+  commentPage.modalPresentationStyle = UIModalPresentationAutomatic;
+  [self presentViewController:commentPage animated:YES completion:nil];
 }
 @end

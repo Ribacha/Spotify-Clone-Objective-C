@@ -32,6 +32,9 @@
 		4B59C9C72ECF32C500F95301 /* AlbumCollectionViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B59C9C62ECF32C500F95301 /* AlbumCollectionViewCell.mm */; };
 		4B59C9CA2ED32F2900F95301 /* SpotifyRecommendAPIModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B59C9C92ED32F2900F95301 /* SpotifyRecommendAPIModel.mm */; };
 		4B8385DA2F4C0FB500A5F07F /* VCDownLoadSongsLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B8385D92F4C0FB500A5F07F /* VCDownLoadSongsLib.mm */; };
+		4B8385DE2F4C4E7D00A5F07F /* VCCommentPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B8385DD2F4C4E7D00A5F07F /* VCCommentPage.mm */; };
+		4B8385E42F4C4EBA00A5F07F /* CommentPageModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B8385E32F4C4EBA00A5F07F /* CommentPageModel.mm */; };
+		4B8385F22F4C904E00A5F07F /* CommentPageTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B8385F12F4C904E00A5F07F /* CommentPageTableViewCell.mm */; };
 		4BA01A5D2ED491130076DC9A /* MusicCardCollectionView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BA01A5C2ED491130076DC9A /* MusicCardCollectionView.mm */; };
 		4BA01A732ED871A00076DC9A /* HomeGirdTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BA01A722ED871A00076DC9A /* HomeGirdTableViewCell.mm */; };
 		4BA01A9C2EDDC8250076DC9A /* SpotifyArtistAPIModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BA01A9B2EDDC8250076DC9A /* SpotifyArtistAPIModel.mm */; };
@@ -51,7 +54,6 @@
 		4BCE63572F3A15630098BE3F /* LibraryRootView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63562F3A15630098BE3F /* LibraryRootView.mm */; };
 		4BCE63592F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BCE63582F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf */; platformFilter = ios; };
 		4BCE635B2F3B24BD0098BE3F /* NotoSerifTC-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BCE635A2F3B24BC0098BE3F /* NotoSerifTC-Light.ttf */; };
-		4BCE635E2F3B3D1B0098BE3F /* SongModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE635D2F3B3D1B0098BE3F /* SongModel.mm */; };
 		4BCE63612F3B4A500098BE3F /* MusicDBModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */; };
 		4BCE63642F3C59850098BE3F /* VCLikeSongsLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63632F3C59850098BE3F /* VCLikeSongsLib.mm */; };
 		64D567B7521AA1779E2C2807 /* libPods-Spotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE7F0276DDDC18AC20A4DBB /* libPods-Spotify.a */; };
@@ -107,6 +109,12 @@
 		4B5FE8FA2EC38EA400E1E9F1 /* Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B8385D82F4C0FB500A5F07F /* VCDownLoadSongsLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCDownLoadSongsLib.h; sourceTree = "<group>"; };
 		4B8385D92F4C0FB500A5F07F /* VCDownLoadSongsLib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VCDownLoadSongsLib.mm; sourceTree = "<group>"; };
+		4B8385DC2F4C4E7D00A5F07F /* VCCommentPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCCommentPage.h; sourceTree = "<group>"; };
+		4B8385DD2F4C4E7D00A5F07F /* VCCommentPage.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VCCommentPage.mm; sourceTree = "<group>"; };
+		4B8385E22F4C4EBA00A5F07F /* CommentPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentPageModel.h; sourceTree = "<group>"; };
+		4B8385E32F4C4EBA00A5F07F /* CommentPageModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CommentPageModel.mm; sourceTree = "<group>"; };
+		4B8385F02F4C904600A5F07F /* CommentPageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentPageTableViewCell.h; sourceTree = "<group>"; };
+		4B8385F12F4C904E00A5F07F /* CommentPageTableViewCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CommentPageTableViewCell.mm; sourceTree = "<group>"; };
 		4BA01A5B2ED491130076DC9A /* MusicCardCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicCardCollectionView.h; sourceTree = "<group>"; };
 		4BA01A5C2ED491130076DC9A /* MusicCardCollectionView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MusicCardCollectionView.mm; sourceTree = "<group>"; };
 		4BA01A712ED871A00076DC9A /* HomeGirdTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeGirdTableViewCell.h; sourceTree = "<group>"; };
@@ -141,8 +149,6 @@
 		4BCE63562F3A15630098BE3F /* LibraryRootView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LibraryRootView.mm; sourceTree = "<group>"; };
 		4BCE63582F3B107B0098BE3F /* NotoSerifTC-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifTC-ExtraBold.ttf"; sourceTree = "<group>"; };
 		4BCE635A2F3B24BC0098BE3F /* NotoSerifTC-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifTC-Light.ttf"; sourceTree = "<group>"; };
-		4BCE635C2F3B3D1B0098BE3F /* SongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongModel.h; sourceTree = "<group>"; };
-		4BCE635D2F3B3D1B0098BE3F /* SongModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SongModel.mm; sourceTree = "<group>"; };
 		4BCE635F2F3B4A500098BE3F /* MusicDBModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicDBModel.h; sourceTree = "<group>"; };
 		4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MusicDBModel.mm; sourceTree = "<group>"; };
 		4BCE63622F3C59850098BE3F /* VCLikeSongsLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCLikeSongsLib.h; sourceTree = "<group>"; };
@@ -199,14 +205,7 @@
 		4B59C8A42ECB473400F95301 /* Home Group */ = {
 			isa = PBXGroup;
 			children = (
-				4B59C8D82ECC9AF100F95301 /* SpotifyModels.h */,
-				4B59C8D92ECC9AF100F95301 /* SpotifyModels.mm */,
-				4BA01A9D2EDDC8680076DC9A /* SpotifySongsModels.h */,
-				4BA01A9E2EDDC8680076DC9A /* SpotifySongsModels.mm */,
-				4BA01A9A2EDDC8250076DC9A /* SpotifyArtistAPIModel.h */,
-				4BA01A9B2EDDC8250076DC9A /* SpotifyArtistAPIModel.mm */,
-				4B59C9C82ED32F2900F95301 /* SpotifyRecommendAPIModel.h */,
-				4B59C9C92ED32F2900F95301 /* SpotifyRecommendAPIModel.mm */,
+				4B8385DB2F4C378500A5F07F /* Analyze&NetworkModels */,
 				4BA01A5B2ED491130076DC9A /* MusicCardCollectionView.h */,
 				4BA01A5C2ED491130076DC9A /* MusicCardCollectionView.mm */,
 				4BA01A712ED871A00076DC9A /* HomeGirdTableViewCell.h */,
@@ -291,6 +290,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4B8385DB2F4C378500A5F07F /* Analyze&NetworkModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B59C8D82ECC9AF100F95301 /* SpotifyModels.h */,
+				4B59C8D92ECC9AF100F95301 /* SpotifyModels.mm */,
+				4BA01A9D2EDDC8680076DC9A /* SpotifySongsModels.h */,
+				4BA01A9E2EDDC8680076DC9A /* SpotifySongsModels.mm */,
+				4BA01A9A2EDDC8250076DC9A /* SpotifyArtistAPIModel.h */,
+				4BA01A9B2EDDC8250076DC9A /* SpotifyArtistAPIModel.mm */,
+				4B59C9C82ED32F2900F95301 /* SpotifyRecommendAPIModel.h */,
+				4B59C9C92ED32F2900F95301 /* SpotifyRecommendAPIModel.mm */,
+			);
+			path = "Analyze&NetworkModels";
+			sourceTree = "<group>";
+		};
 		4BCE5FE12EE70F5A0098BE3F /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,10 +316,14 @@
 				4BCE5FDF2EE6F1EE0098BE3F /* VCMusicPlayer.mm */,
 				4BCE5FE22EE82C060098BE3F /* MusicPlayerManager.h */,
 				4BCE5FE32EE82C060098BE3F /* MusicPlayerManager.mm */,
-				4BCE635C2F3B3D1B0098BE3F /* SongModel.h */,
-				4BCE635D2F3B3D1B0098BE3F /* SongModel.mm */,
 				4BCE635F2F3B4A500098BE3F /* MusicDBModel.h */,
 				4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */,
+				4B8385DC2F4C4E7D00A5F07F /* VCCommentPage.h */,
+				4B8385DD2F4C4E7D00A5F07F /* VCCommentPage.mm */,
+				4B8385E22F4C4EBA00A5F07F /* CommentPageModel.h */,
+				4B8385E32F4C4EBA00A5F07F /* CommentPageModel.mm */,
+				4B8385F02F4C904600A5F07F /* CommentPageTableViewCell.h */,
+				4B8385F12F4C904E00A5F07F /* CommentPageTableViewCell.mm */,
 			);
 			path = MusicPlayer;
 			sourceTree = "<group>";
@@ -465,14 +483,16 @@
 			files = (
 				4B59C8DA2ECC9AF100F95301 /* SpotifyModels.mm in Sources */,
 				4BCE63512F39FE160098BE3F /* LibraryHeaderView.mm in Sources */,
-				4BCE635E2F3B3D1B0098BE3F /* SongModel.mm in Sources */,
+				4B8385F22F4C904E00A5F07F /* CommentPageTableViewCell.mm in Sources */,
 				4B59C88A2ECB471F00F95301 /* AppDelegate.mm in Sources */,
+				4B8385DE2F4C4E7D00A5F07F /* VCCommentPage.mm in Sources */,
 				4BA01A9C2EDDC8250076DC9A /* SpotifyArtistAPIModel.mm in Sources */,
 				4BCE63642F3C59850098BE3F /* VCLikeSongsLib.mm in Sources */,
 				4B59C88D2ECB471F00F95301 /* LoginView.mm in Sources */,
 				4B59C8AF2ECB474F00F95301 /* VCSearchPage.mm in Sources */,
 				4B59C8B02ECB474F00F95301 /* SearchView.mm in Sources */,
 				4BCE63542F3A115C0098BE3F /* LibraryMenuCell.mm in Sources */,
+				4B8385E42F4C4EBA00A5F07F /* CommentPageModel.mm in Sources */,
 				4B59C8BF2ECB60BD00F95301 /* SpotifyAPIManager.mm in Sources */,
 				4B59C9CA2ED32F2900F95301 /* SpotifyRecommendAPIModel.mm in Sources */,
 				4B59C8B12ECB474F00F95301 /* SpotifySearchModel.mm in Sources */,
