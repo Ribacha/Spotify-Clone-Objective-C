@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MusicPlayerManager : NSObject
 + (instancetype) shared ;
 @property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, assign) BOOL isPreloadingNextSong;
 @property (nonatomic, strong) SpotifySongsModels *currentModel;
 @property (nonatomic, strong) NSArray <SpotifySongsModels *> *playlist;
 @property (nonatomic, assign) NSInteger currentindex;

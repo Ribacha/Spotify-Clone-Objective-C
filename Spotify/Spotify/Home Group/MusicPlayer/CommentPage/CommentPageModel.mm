@@ -28,18 +28,18 @@
     for (NSDictionary *dict in commentsData) {
       CommentPageModel *model = [[CommentPageModel alloc] init];
       model.commentID = [NSString stringWithFormat:@"%@", dict[@"commentId"]];
-      model.content = dict[@"content"];
-      model.userName = dict[@"user"][@"nickname"];
-      model.avatarUrl = dict[@"user"][@"avatarUrl"];
-      model.timeStr = dict[@"timeStr"];
+      model.content = [dict[@"content"] isKindOfClass:[NSNull class]] ? @"" : dict[@"content"];
+      model.userName = [dict[@"user"][@"nickname"] isKindOfClass:[NSNull class]] ? @"" : dict[@"user"][@"nickname"];
+      model.avatarUrl =[dict[@"user"][@"avatarUrl"] isKindOfClass:[NSNull class]] ? @"" : dict[@"user"][@"avatarUrl"];
+      model.timeStr = [dict[@"timeStr"] isKindOfClass:[NSNull class]] ? @"" : dict[@"timeStr"];
       NSArray *rCommentsArray = dict[@"beReplied"];
       NSMutableArray *repliesArray = [NSMutableArray array];
       for (NSDictionary *replyDict in rCommentsArray) {
         CommentPageRepliedModel *rModel = [[CommentPageRepliedModel alloc] init];
-        rModel.content = replyDict[@"content"];
-        rModel.avatarUrl = replyDict[@"user"][@"avatarUrl"];
-        rModel.userName = replyDict[@"user"][@"nickname"];
-        rModel.timeStr = replyDict[@"timeStr"];
+        rModel.content = [replyDict[@"content"] isKindOfClass:[NSNull class]] ? @"" : replyDict[@"content"];
+        rModel.avatarUrl = [replyDict[@"user"][@"avatarUrl"] isKindOfClass:[NSNull class]] ? @"" : replyDict[@"user"][@"avatarUrl"];
+        rModel.userName = [replyDict[@"user"][@"nickname"] isKindOfClass:[NSNull class]] ? @"" : replyDict[@"user"][@"nickname"];
+        rModel.timeStr = [replyDict[@"timeStr"] isKindOfClass:[NSNull class]] ? @"" : replyDict[@"timeStr"];
         [repliesArray addObject:rModel];
       }
       model.beReplied = repliesArray;

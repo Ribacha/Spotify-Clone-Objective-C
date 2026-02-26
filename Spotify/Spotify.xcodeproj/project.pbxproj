@@ -305,9 +305,23 @@
 			path = "Analyze&NetworkModels";
 			sourceTree = "<group>";
 		};
+		4B8385F32F4ED69F00A5F07F /* CommentPage */ = {
+			isa = PBXGroup;
+			children = (
+				4B8385DC2F4C4E7D00A5F07F /* VCCommentPage.h */,
+				4B8385DD2F4C4E7D00A5F07F /* VCCommentPage.mm */,
+				4B8385E22F4C4EBA00A5F07F /* CommentPageModel.h */,
+				4B8385E32F4C4EBA00A5F07F /* CommentPageModel.mm */,
+				4B8385F02F4C904600A5F07F /* CommentPageTableViewCell.h */,
+				4B8385F12F4C904E00A5F07F /* CommentPageTableViewCell.mm */,
+			);
+			path = CommentPage;
+			sourceTree = "<group>";
+		};
 		4BCE5FE12EE70F5A0098BE3F /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				4B8385F32F4ED69F00A5F07F /* CommentPage */,
 				4BCE5FD82EE6D3420098BE3F /* MiniPlayerView.h */,
 				4BCE5FD92EE6D3420098BE3F /* MiniPlayerView.mm */,
 				4BCE5FE52EE843AA0098BE3F /* MusicPlayerDetailView.h */,
@@ -318,12 +332,6 @@
 				4BCE5FE32EE82C060098BE3F /* MusicPlayerManager.mm */,
 				4BCE635F2F3B4A500098BE3F /* MusicDBModel.h */,
 				4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */,
-				4B8385DC2F4C4E7D00A5F07F /* VCCommentPage.h */,
-				4B8385DD2F4C4E7D00A5F07F /* VCCommentPage.mm */,
-				4B8385E22F4C4EBA00A5F07F /* CommentPageModel.h */,
-				4B8385E32F4C4EBA00A5F07F /* CommentPageModel.mm */,
-				4B8385F02F4C904600A5F07F /* CommentPageTableViewCell.h */,
-				4B8385F12F4C904E00A5F07F /* CommentPageTableViewCell.mm */,
 			);
 			path = MusicPlayer;
 			sourceTree = "<group>";

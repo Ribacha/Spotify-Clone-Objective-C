@@ -29,6 +29,7 @@
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
   self.tableView.rowHeight = 70;
+  self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
   [self.tableView registerClass:[SearchResultCell class] forCellReuseIdentifier:@"SearchResultCell"];
   [self.view addSubview:self.tableView];
 }

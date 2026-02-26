@@ -119,6 +119,7 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
 - (void) playMusic: (SpotifySongsModels *) models {
   self.currentModel = models;
   self.isPlaying = YES;
+  self.isPreloadingNextSong = NO;
   BOOL isLiked = [[MusicDBModel shared] isSongLiked:self.currentModel.songID];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicPlayerDidChangeSongNotification" object:nil userInfo:@{
     @"isLiked" : @(isLiked)
@@ -269,13 +270,43 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
     }
     weakSelf.currentTime = current;
     weakSelf.totalDuration = total;
+    if (total > 0 && (total - current) <= 15.0) {
+      if (!weakSelf.isPreloadingNextSong) {
+        [weakSelf startPreloadNextSong];
+      }
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicPlayerProgressDidUpdateNotification" object:nil];
   }];
   [self.player play];
   self.isPlaying = YES;
   [self postStateNotification];
 }
-
+//预加载函数
+- (void) startPreloadNextSong {
+  if (self.playlist.count == 0) {
+    return;
+  }
+  NSInteger nextIndex = self.currentindex + 1;
+  if (nextIndex >= self.playlist.count) {
+    nextIndex = 0;
+  }
+  SpotifySongsModels *nextModels = self.playlist[nextIndex];
+  NSString *LocalPath = [self getLocalPathForSongID:nextModels.songID];
+  if ([[NSFileManager defaultManager] fileExistsAtPath:LocalPath]) {
+    return;
+  }
+  self.isPreloadingNextSong = YES;
+  NSLog(@"开始预加载%@", nextModels.track);
+  __weak typeof(self) weakSelf = self;
+  [SpotifyArtistAPIModel fetchMusicURLWithID:nextModels.songID completion:^(NSString * _Nullable muiscURL, NSError * _Nullable error) {
+    if (error || !muiscURL) {
+      weakSelf.isPreloadingNextSong = NO;
+      return;
+    }
+    nextModels.songUrl = muiscURL;
+    [weakSelf downLoadSongInBackGround:nextModels];
+  }];
+}
 - (void) seekToTime:(NSTimeInterval) time {
   [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
     if (finished) {
