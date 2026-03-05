@@ -13,6 +13,7 @@
 #import "LibraryHeaderView.h"
 #import "VCLikeSongsLib.h"
 #import "VCDownLoadSongsLib.h"
+#import "VCrecentSongsLib.h"
 @interface VCMusicLibrary ()
 
 @end
@@ -80,6 +81,13 @@
       downLoadMusicVC.hidesBottomBarWhenPushed = YES;
       [self.navigationController pushViewController:downLoadMusicVC animated:YES];
       NSLog(@"点击了下载音乐");
+    }
+      break;
+    case LibraryActionTypeRecent: {
+      VCrecentSongsLib *recentLoadMusicVC = [[VCrecentSongsLib alloc] init];
+      recentLoadMusicVC.hidesBottomBarWhenPushed = YES;
+      [self.navigationController pushViewController:recentLoadMusicVC animated:YES];
+      NSLog(@"点击了最近收听");
     }
       break;
     default:

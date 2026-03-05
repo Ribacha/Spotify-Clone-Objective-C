@@ -16,12 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *songID;
 @property (nonatomic, strong) NSString *picURl;
 @property (nonatomic, strong) NSString *songUrl;
-
+@property (nonatomic, assign) NSTimeInterval lastPlayTime;
+@property (nonatomic, assign) NSString *desc;
 WCDB_PROPERTY(songID);
 WCDB_PROPERTY(picURl);
 WCDB_PROPERTY(track);
 WCDB_PROPERTY(artist);
 WCDB_PROPERTY(songUrl);
+WCDB_PROPERTY(lastPlayTime);
+WCDB_PROPERTY(desc);
 @end
 
 NS_ASSUME_NONNULL_END

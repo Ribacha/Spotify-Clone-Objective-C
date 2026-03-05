@@ -26,15 +26,19 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self setupBackButton];
+//  [self setupBackButton];
+  self.mainView.backgroundColor = [UIColor blackColor];
   self.mainView.tableView.dataSource = self;
   self.mainView.tableView.delegate = self;
   self.mainView.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
   [self.mainView.tableView registerClass:[AlbumSongsTableViewCell class] forCellReuseIdentifier:@"AlbumSongsTableViewCell"];
   [self.mainView.tableView reloadData];
+  UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+  [self.view addGestureRecognizer:panGesture];
 }
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  [self.navigationController setNavigationBarHidden:NO animated:NO];
   [self fentchData];
 }
 - (void) fentchData {
@@ -43,7 +47,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
       self.allmodels = songs;
       //objc中的泛型和编译器推断不能使用 songs
-      [self.mainView updateWithTitle:@"我喜欢的歌曲" imageURL:self.allmodels.firstObject.picURl];
+      [self.mainView updateWithTitle:@"我喜欢的歌曲" imageURL:[NSURL URLWithString:self.allmodels.firstObject.picURl] descText:@""];
       [self.mainView.tableView reloadData];
     });
   });
@@ -86,8 +90,41 @@
   [MusicPlayerManager shared].currentindex = indexPath.row;
   [[MusicPlayerManager shared] playMusic:clickModels];
   VCMusicPlayer *player = [[VCMusicPlayer alloc] init];
+  player.modalPresentationStyle = UIModalPresentationOverFullScreen;
   [self presentViewController:player animated:YES completion:nil];
 
+}
+#pragma mark - 拖拽下滑关闭逻辑
+- (void)handlePanGesture:(UIPanGestureRecognizer *)pan {
+  CGPoint translation = [pan translationInView:self.view];
+  CGPoint velocity = [pan velocityInView:self.view];
+  switch (pan.state) {
+    case UIGestureRecognizerStateChanged: {
+      if (translation.y > 0) {
+        self.view.transform = CGAffineTransformMakeTranslation(0, translation.y);
+      }
+      break;
+    }
+    case UIGestureRecognizerStateEnded:
+    case UIGestureRecognizerStateCancelled: {
+      if (translation.y > 150 || velocity.y > 800) {
+        [UIView animateWithDuration:0.25 animations:^{
+          self.view.transform = CGAffineTransformMakeTranslation(0, self.view.bounds.size.height);
+        } completion:^(BOOL finished) {
+          [self dismissViewControllerAnimated:NO completion:nil];
+        }];
+      } else {
+        [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:velocity.y / 100.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+          self.view.transform = CGAffineTransformIdentity;
+        } completion:nil];
+      }
+      break;
+    }
+      break;
+
+    default:
+      break;
+  }
 }
 
 @end

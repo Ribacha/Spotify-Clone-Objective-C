@@ -72,6 +72,5 @@
     }
   }];
   self.needsExpandButton = lines > 3;
-
 }
 @end

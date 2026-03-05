@@ -24,7 +24,8 @@
         @"id" : @"id",
         @"name" : @"name",
         @"imageUrl" : @[@"picUrl", @"coverImgUrl", @"images[0].url"],
-        @"artistName" : @"creator.nickname" 
+        @"artistName" : @"creator.nickname" ,
+        @"desc" : @"description"
     };
 }
 @end

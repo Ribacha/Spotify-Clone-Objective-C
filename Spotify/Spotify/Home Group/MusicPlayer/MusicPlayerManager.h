@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) TapLikedButton;
 - (void) downLoadCurrentSongForUser;
 - (BOOL) isSongDownLoad: (NSString *)songID;
+- (void) deleteDownLoadedSongsFile : (SpotifySongsModels *) model;
 @end
 
 NS_ASSUME_NONNULL_END

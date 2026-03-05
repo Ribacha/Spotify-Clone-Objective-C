@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) WCTDatabase *dataBase;
 @property (nonatomic, strong) NSString *tableName;
 @property (nonatomic, strong) NSString *downLoadSongTableName;
+@property (nonatomic, strong) NSString *recentPlayTableName;
 + (instancetype) shared;
 - (BOOL) likeSong: (SpotifySongsModels *) song;
 - (BOOL) unLikeSong: (SpotifySongsModels *) song;
@@ -21,7 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<SpotifySongsModels *> *) getAllLikeSong;
 - (BOOL) saveDownLoadSongs: (SpotifySongsModels *) songs;
 - (BOOL) isDownLoadSongs: (NSString *) songId;
+- (BOOL) removeDownLoadSong: (SpotifySongsModels *)song;
 - (NSArray<SpotifySongsModels *> *) getAllDownLoadSongs;
+- (BOOL) addRecentPlaySong : (SpotifySongsModels *) song;
+- (NSArray <SpotifySongsModels *> *)getRecentPlaySongs;
 @end
 
 NS_ASSUME_NONNULL_END

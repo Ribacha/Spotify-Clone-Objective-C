@@ -15,14 +15,16 @@ WCDB_SYNTHESIZE(track)
 WCDB_SYNTHESIZE(artist)
 WCDB_SYNTHESIZE(picURl)
 WCDB_SYNTHESIZE(songUrl)
+WCDB_SYNTHESIZE(lastPlayTime)
+WCDB_SYNTHESIZE(desc)
 WCDB_PRIMARY(songID)
-
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{
         @"track" : @"name",
         @"songID" : @"id",
         @"picURl" : @[@"al.picUrl", @"album.picUrl",@"album.artist.img1v1Url",@"artists[0].img1v1Url"],
-        @"artist" : @"ar[0].name"
+        @"artist" : @"ar[0].name",
+        @"desc" : @"desc"
     };
 }
 

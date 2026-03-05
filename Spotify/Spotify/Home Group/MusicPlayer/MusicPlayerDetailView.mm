@@ -125,7 +125,7 @@
   }];
   self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
   UIImageSymbolConfiguration *confing = [UIImageSymbolConfiguration configurationWithPointSize:22 weight:UIImageSymbolWeightBlack];
-  [self.commentButton setImage:[UIImage systemImageNamed:@"chevron.down" withConfiguration:confing] forState:UIControlStateNormal];
+  [self.commentButton setImage:[UIImage systemImageNamed:@"message" withConfiguration:confing] forState:UIControlStateNormal];
   self.commentButton.tintColor = [UIColor whiteColor];
   [self.commentButton addTarget:self action:@selector(newCommentPage) forControlEvents:UIControlEventTouchUpInside];
   [self addSubview:self.commentButton];

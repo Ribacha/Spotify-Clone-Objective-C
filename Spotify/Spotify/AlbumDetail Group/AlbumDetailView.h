@@ -13,7 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *RecommendImage;
 @property (nonatomic, strong) UILabel *RecommendLabel;
 @property (nonatomic, strong, readwrite) UITableView *tableView;
-- (void) updateWithTitle: (NSString*) title imageURL: (NSString*) url;
+@property (nonatomic, assign) BOOL isExpanded;
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UILabel *descLabel;
+@property (nonatomic, strong) UIButton *expandButton;
+- (void) updateWithTitle: (NSString*) title imageURL: (NSURL*) url descText: (NSString*) descText;
 @end
 
 NS_ASSUME_NONNULL_END

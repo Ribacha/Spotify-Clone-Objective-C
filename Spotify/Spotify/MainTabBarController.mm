@@ -57,7 +57,7 @@
   self.minPlayerView.tapAction = ^{
     NSLog(@"你点击了 mini 播放器");
     VCMusicPlayer *playerVC = [[VCMusicPlayer alloc] init];
-    playerVC.modalPresentationStyle = UIModalPresentationAutomatic;//卡片样式zh
+    playerVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [weakself presentViewController:playerVC animated:YES completion:nil];
   };
   self.minPlayerView.playButtonAction = ^(BOOL isPlaying) {

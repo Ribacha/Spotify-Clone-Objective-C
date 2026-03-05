@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SpotifyArtistAPIModel : NSObject
-+ (void) fetchAlbumsTracksWithID: (NSString *) albumID completion: (void (^) (NSArray<SpotifySongsModels *> *models, NSError *error)) completion;
++ (void) fetchAlbumsTracksWithID: (NSString *) albumID completion: (void (^) (NSArray<SpotifySongsModels *> *models, NSString *desc,NSError *error)) completion;
 + (void) fetchMusicURLWithID: (NSString *) songID completion:(void(^)(NSString *_Nullable muiscURL, NSError *_Nullable error) )completion;
 @end
 

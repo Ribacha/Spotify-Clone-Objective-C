@@ -85,7 +85,7 @@
         __weak typeof(self) weakSelf = self;
         cell.pushBlock = ^(SpotifyModels * _Nonnull clickedModel) {
             // 这里 ID 已经是网易云的 ID 了
-            NSLog(@"点击 Grid: %@ - ID: %@", clickedModel.name, clickedModel.id);
+            NSLog(@"点击 Grid: %@ - ID: %@ desc : %@", clickedModel.name, clickedModel.id, clickedModel.desc);
             VCAlbumDetail *detailVC = [[VCAlbumDetail alloc] init];
           detailVC.albumModel = clickedModel;
           detailVC.IDStr = clickedModel.id;
@@ -136,7 +136,6 @@
     }
   __weak typeof(self) weakSelf = self;
   cell.pushBlock = ^(SpotifyModels * _Nonnull clickedModel) {
-      // 这里 ID 已经是网易云的 ID 了
       NSLog(@"点击 Grid: %@ - ID: %@", clickedModel.name, clickedModel.id);
       VCAlbumDetail *detailVC = [[VCAlbumDetail alloc] init];
       detailVC.albumModel = clickedModel;

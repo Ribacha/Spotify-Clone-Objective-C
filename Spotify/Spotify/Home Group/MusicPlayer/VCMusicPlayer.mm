@@ -24,6 +24,8 @@
   [super viewDidLoad];
   [self addNotifications];
   [self updateData];
+  UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+  [self.view addGestureRecognizer:panGesture];
 }
 - (void) dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -93,5 +95,38 @@
   commentPage.songID = [MusicPlayerManager shared].currentModel.songID;
   commentPage.modalPresentationStyle = UIModalPresentationAutomatic;
   [self presentViewController:commentPage animated:YES completion:nil];
+}
+
+#pragma mark - 拖拽下滑关闭逻辑
+- (void)handlePanGesture:(UIPanGestureRecognizer *)pan {
+  CGPoint translation = [pan translationInView:self.view];
+  CGPoint velocity = [pan velocityInView:self.view];
+  switch (pan.state) {
+    case UIGestureRecognizerStateChanged: {
+      if (translation.y > 0) {
+        self.view.transform = CGAffineTransformMakeTranslation(0, translation.y);
+      }
+      break;
+    }
+    case UIGestureRecognizerStateEnded:
+    case UIGestureRecognizerStateCancelled: {
+      if (translation.y > 150 || velocity.y > 800) {
+        [UIView animateWithDuration:0.25 animations:^{
+          self.view.transform = CGAffineTransformMakeTranslation(0, self.view.bounds.size.height);
+        } completion:^(BOOL finished) {
+          [self dismissViewControllerAnimated:NO completion:nil];
+        }];
+      } else {
+        [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:velocity.y / 100.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+          self.view.transform = CGAffineTransformIdentity;
+        } completion:nil];
+      }
+      break;
+    }
+      break;
+
+    default:
+      break;
+  }
 }
 @end

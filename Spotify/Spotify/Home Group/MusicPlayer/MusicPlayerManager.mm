@@ -120,6 +120,7 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
   self.currentModel = models;
   self.isPlaying = YES;
   self.isPreloadingNextSong = NO;
+  [[MusicDBModel shared] addRecentPlaySong:models];
   BOOL isLiked = [[MusicDBModel shared] isSongLiked:self.currentModel.songID];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicPlayerDidChangeSongNotification" object:nil userInfo:@{
     @"isLiked" : @(isLiked)
@@ -202,6 +203,24 @@ static NSInteger const maxCacheSize = 100 * 1024 * 1024;
   }] resume];
 
 }
+//删除音乐方法
+- (void) deleteDownLoadedSongsFile : (SpotifySongsModels *) model {
+  if (!model.songID) {
+    return;
+  }
+  NSString *desPath = [self getLocalDownLoadPathForSongID:model.songID];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  if ([fileManager fileExistsAtPath:desPath]) {
+    NSError *error;
+    [fileManager removeItemAtPath:desPath error:&error];
+    if (error) {
+      NSLog(@"删除失败%@",error.localizedDescription);
+    } else {
+      NSLog(@"删除成功%@",model.track);
+    }
+  }
+}
+//辅助方法判断音乐是否下载
 - (BOOL) isSongDownLoad: (NSString *)songID {
   NSString *fileName = [NSString stringWithFormat:@"%@.mp3", songID];
   NSString *path = [[self getDownloadDictionary] stringByAppendingPathComponent:fileName];

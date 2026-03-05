@@ -56,6 +56,7 @@
 		4BCE635B2F3B24BD0098BE3F /* NotoSerifTC-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BCE635A2F3B24BC0098BE3F /* NotoSerifTC-Light.ttf */; };
 		4BCE63612F3B4A500098BE3F /* MusicDBModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */; };
 		4BCE63642F3C59850098BE3F /* VCLikeSongsLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE63632F3C59850098BE3F /* VCLikeSongsLib.mm */; };
+		4BE87D592F5855920032E629 /* VCrecentSongsLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4BE87D582F5855920032E629 /* VCrecentSongsLib.mm */; };
 		64D567B7521AA1779E2C2807 /* libPods-Spotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE7F0276DDDC18AC20A4DBB /* libPods-Spotify.a */; };
 /* End PBXBuildFile section */
 
@@ -153,6 +154,8 @@
 		4BCE63602F3B4A500098BE3F /* MusicDBModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MusicDBModel.mm; sourceTree = "<group>"; };
 		4BCE63622F3C59850098BE3F /* VCLikeSongsLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCLikeSongsLib.h; sourceTree = "<group>"; };
 		4BCE63632F3C59850098BE3F /* VCLikeSongsLib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VCLikeSongsLib.mm; sourceTree = "<group>"; };
+		4BE87D572F5855920032E629 /* VCrecentSongsLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCrecentSongsLib.h; sourceTree = "<group>"; };
+		4BE87D582F5855920032E629 /* VCrecentSongsLib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VCrecentSongsLib.mm; sourceTree = "<group>"; };
 		633CF3CF95762EBC6463859A /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
 		BBE7F0276DDDC18AC20A4DBB /* libPods-Spotify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Spotify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -259,6 +262,8 @@
 				4BCE63632F3C59850098BE3F /* VCLikeSongsLib.mm */,
 				4B8385D82F4C0FB500A5F07F /* VCDownLoadSongsLib.h */,
 				4B8385D92F4C0FB500A5F07F /* VCDownLoadSongsLib.mm */,
+				4BE87D572F5855920032E629 /* VCrecentSongsLib.h */,
+				4BE87D582F5855920032E629 /* VCrecentSongsLib.mm */,
 			);
 			path = "MusicLIb Group";
 			sourceTree = "<group>";
@@ -524,6 +529,7 @@
 				4B59C8B92ECB477800F95301 /* MusicLibraryView.mm in Sources */,
 				4BA01A9F2EDDC8680076DC9A /* SpotifySongsModels.mm in Sources */,
 				4B59C8BA2ECB477800F95301 /* VCMusicLibrary.mm in Sources */,
+				4BE87D592F5855920032E629 /* VCrecentSongsLib.mm in Sources */,
 				4B8385DA2F4C0FB500A5F07F /* VCDownLoadSongsLib.mm in Sources */,
 				4BCE5FE02EE6F1EE0098BE3F /* VCMusicPlayer.mm in Sources */,
 				4B59C9C72ECF32C500F95301 /* AlbumCollectionViewCell.mm in Sources */,
@@ -571,6 +577,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -598,6 +605,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

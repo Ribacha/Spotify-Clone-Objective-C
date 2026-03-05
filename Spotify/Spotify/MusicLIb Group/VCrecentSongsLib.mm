@@ -1,32 +1,32 @@
 //
-//  VCAlbumDetail.m
+//  VCrecentSongsLib.m
 //  Spotify
 //
-//  Created by 开开心心的macbook air on 2025/12/2.
+//  Created by 开开心心的macbook air on 2026/3/4.
 //
 
-#import "VCAlbumDetail.h"
+#import "VCrecentSongsLib.h"
 #import "Masonry/Masonry.h"
 #import "SpotifyArtistAPIModel.h"
 #import "AlbumDetailView.h"
 #import "AlbumSongsTableViewCell.h"
 #import "VCMusicPlayer.h"
 #import "MusicPlayerManager.h"
-@interface VCAlbumDetail ()
+#import "MusicDBModel.h"
+#import "SpotifySongsModels.h"
+@interface VCrecentSongsLib ()
 
 @end
 
-@implementation VCAlbumDetail
+@implementation VCrecentSongsLib
 - (void)loadView {
   self.mainView = [[AlbumDetailView alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.view = self.mainView;
 }
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
 //  [self setupBackButton];
   self.mainView.backgroundColor = [UIColor blackColor];
-  [self fetchData];
   self.mainView.tableView.dataSource = self;
   self.mainView.tableView.delegate = self;
   self.mainView.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
@@ -38,49 +38,22 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.navigationController setNavigationBarHidden:NO animated:NO];
+  [self fentchData];
 }
-- (void) fetchData {
-  __weak typeof (self) weakSelf = self;
-//  [[MusicPlayerManager shared] fentchID:self.IDStr];
-  [SpotifyArtistAPIModel fetchAlbumsTracksWithID:self.IDStr completion:^(NSArray<SpotifySongsModels *> * _Nonnull models, NSString *desc,NSError * _Nonnull error) {
-    if (error) {
-      NSLog(@"发生错误 %@", error);
-      return;
-    }
-    if (models.count > 0) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        weakSelf.allmodels = models;
-        NSLog(@"歌曲数据%@", weakSelf.allmodels);
-        if (weakSelf.albumModel) {
-          [self.mainView updateWithTitle:self.albumModel.name imageURL:[NSURL URLWithString: self.albumModel.imageUrl] descText:desc];
-        } else {
-          [self.mainView updateWithTitle:models.firstObject.track imageURL:[NSURL URLWithString: models.firstObject.picURl] descText:desc];
-        }
-        NSLog(@"%@",desc);
-        [weakSelf.mainView.tableView reloadData];
-      });
-    }
-  }];
-}
-
-- (void) setupBackButton {
-  UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-  [backBtn setImage:[UIImage systemImageNamed:@"chevron.left"] forState:UIControlStateNormal];
-  [backBtn setTintColor:[UIColor whiteColor]];
-  [backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:backBtn];
-  [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.left.equalTo(self.view).offset(16);
-    make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
-    make.width.height.mas_equalTo(30);
-  }];
-}
-- (void) goBack {
-  [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+- (void) fentchData {
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSArray *songs = [[MusicDBModel shared] getRecentPlaySongs];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.allmodels = songs;
+      //objc中的泛型和编译器推断不能使用 songs
+      if (self.allmodels.count > 0) {
+        [self.mainView updateWithTitle:@"最近收听" imageURL:[NSURL URLWithString:self.allmodels.firstObject.picURl] descText:@""];
+      } else {
+        [self.mainView updateWithTitle:@"最近收听" imageURL:nil descText:@""];
+      }
+      [self.mainView.tableView reloadData];
+    });
+  });
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return self.allmodels.count;
@@ -103,7 +76,6 @@
   VCMusicPlayer *player = [[VCMusicPlayer alloc] init];
   player.modalPresentationStyle = UIModalPresentationOverFullScreen;
   [self presentViewController:player animated:YES completion:nil];
-
 }
 #pragma mark - 拖拽下滑关闭逻辑
 - (void)handlePanGesture:(UIPanGestureRecognizer *)pan {

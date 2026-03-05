@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *uri;
 @property (nonatomic, copy) NSString *id;
 @property (nonatomic, copy) NSString *imageUrl;
+@property (nonatomic, copy) NSString *desc;
 @property (nonatomic, strong) SpotifySimpleAlbum *album;
 @property (nonatomic, strong) NSArray<SpotifyImage *> *images;
 @end

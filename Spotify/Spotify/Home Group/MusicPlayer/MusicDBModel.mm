@@ -23,12 +23,14 @@
   if (self) {
     self.tableName = @"favouriteSongsTable";
     self.downLoadSongTableName = @"downLoadSongsTable";
+    self.recentPlayTableName = @"recentPlayTableName";
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *dbPath = [docPath stringByAppendingPathComponent:@"SpotifyData.db"];
     self.dataBase = [[WCTDatabase alloc] initWithPath:dbPath];
     if ([self.dataBase canOpen]) {
       BOOL result = [self.dataBase createTable:self.tableName withClass:SpotifySongsModels.class];
       BOOL result2 = [self.dataBase createTable:self.downLoadSongTableName withClass:SpotifySongsModels.class];
+      BOOL result3 = [self.dataBase createTable:self.recentPlayTableName withClass:SpotifySongsModels.class];
       if(result && result2) {
         NSLog(@"数据库打开成功，建表成功");
         NSLog(@"数据库路径: %@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
@@ -58,7 +60,7 @@
 - (NSArray<SpotifySongsModels *> *) getAllLikeSong {
   return [self.dataBase getObjectsOfClass:SpotifySongsModels.class fromTable:self.tableName];
 }
-#pragma - mark - 下载歌曲的增，查， 判断逻辑
+#pragma - mark - 下载歌曲的增，删，查， 判断逻辑
 - (BOOL) saveDownLoadSongs: (SpotifySongsModels *) songs {
   if (!songs) {
     return NO;
@@ -72,5 +74,22 @@
 }
 - (NSArray<SpotifySongsModels *> *) getAllDownLoadSongs {
   return [self.dataBase getObjectsOfClass:SpotifySongsModels.class fromTable:self.downLoadSongTableName];
+}
+- (BOOL) removeDownLoadSong: (SpotifySongsModels *)song {
+  if (!song) {
+    return NO;
+  }
+  return [self.dataBase deleteFromTable:self.downLoadSongTableName where:SpotifySongsModels.songID == song.songID];
+}
+#pragma - mark - 最近播放歌曲逻辑
+- (BOOL) addRecentPlaySong : (SpotifySongsModels *) song {
+  if (!song) {
+    return NO;
+  }
+  song.lastPlayTime = [[NSDate date] timeIntervalSince1970];
+  return [self.dataBase insertOrReplaceObject:song intoTable:self.recentPlayTableName];
+}
+- (NSArray <SpotifySongsModels *> *)getRecentPlaySongs {
+  return [self.dataBase getObjectsOfClass:SpotifySongsModels.class fromTable:self.recentPlayTableName limit: 100];
 }
 @end

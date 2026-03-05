@@ -12,10 +12,10 @@
 
 @implementation SpotifyArtistAPIModel
 
-+ (void)fetchAlbumsTracksWithID:(NSString *)albumID completion:(void (^)(NSArray<SpotifySongsModels *> *models, NSError *error))completion {
++ (void)fetchAlbumsTracksWithID:(NSString *)albumID completion:(void (^)(NSArray<SpotifySongsModels *> *models,NSString *desc ,NSError *error))completion {
 
     if (!albumID) {
-        if (completion) completion(nil, [NSError errorWithDomain:@"App" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"ID为空"}]);
+        if (completion) completion(nil, nil, [NSError errorWithDomain:@"App" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"ID为空"}]);
         return;
     }
     NSDictionary *params = @{ @"id": albumID };
@@ -24,30 +24,35 @@
 
         if (error) {
             NSLog(@"[API Error] 获取歌单详情失败: %@", error);
-            if (completion) completion(nil, error);
+            if (completion) completion(nil, nil,error);
             return;
         }
         NSArray *songsJSON = nil;
+      NSString *playlistDesc = nil;
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSDictionary *playlistDict = responseObject[@"playlist"];
             if ([playlistDict isKindOfClass:[NSDictionary class]]) {
                 songsJSON = playlistDict[@"tracks"];
             }
+          if (playlistDict[@"description"] && ![playlistDict[@"description"] isKindOfClass:[NSNull class]]) {
+            playlistDesc = playlistDict[@"description"];
+          }
         }
         // 容错处理
         if (!songsJSON || ![songsJSON isKindOfClass:[NSArray class]]) {
             NSLog(@"[Data Error] 无法解析 tracks 数据, 原始数据结构可能不匹配");
-            if (completion) completion(@[], nil);
+            if (completion) completion(@[], nil,nil);
             return;
         }
         // 转换模型
         NSArray *tracks = [NSArray yy_modelArrayWithClass:[SpotifySongsModels class] json:songsJSON];
-
+              NSLog(@"网络请求成功！拿到 %lu 首歌，描述文字是：%@", (unsigned long)tracks.count, playlistDesc);
         if (completion) {
-            completion(tracks, nil);
+            completion(tracks, playlistDesc, nil);
         }
     }];
 }
+
 + (void) fetchMusicURLWithID: (NSString *) songID completion:(void(^)(NSString *_Nullable muiscURL, NSError *_Nullable error) )completion {
   if (!songID) {
     return;
